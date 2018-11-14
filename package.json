@@ -1,0 +1,55 @@
+{
+  "author": "Ali Sajid",
+  "scripts": {
+    "dist": "webpack",
+    "lint": "esw",
+    "lint:watch": "esw --watch",
+    "format": "prettier --config .prettierrc --write 'src/**/*.{js,jsx}'",
+    "format:watch": "onchange '**/*.js' -- yarn format",
+    "lint:css": "stylelint './src/**/*.js'",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-watch": "^4.0.2",
+    "husky": "^1.1.2",
+    "lint-staged": "^8.0.3",
+    "onchange": "^5.0.2",
+    "prettier": "^1.14.3",
+    "stylelint": "^9.7.1",
+    "stylelint-config-recommended": "^2.1.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "prettier --trailing-comma es5 --single-quote --write",
+      "git add"
+    ],
+    "**/*.{css,scss}": [
+      "stylelint --syntax scss",
+      "git add"
+    ]
+  }
+}
