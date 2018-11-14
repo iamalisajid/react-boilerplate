@@ -1,27 +1,47 @@
-const webpack = require('webpack');
-const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
-const config = {
-  entry: './src/index.js',
-  mode: 'development',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-  },
+const htmlWebpackPlugin = new HtmlWebPackPlugin({
+  template: './public/index.html',
+  filename: './index.html',
+});
+
+module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
-
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]_[local]_[hash:base64]',
+              sourceMap: true,
+              minimize: true,
+            },
+          },
+          {
+            test: /\.(gif|svg|jpg|png)$/,
+            loader: 'file-loader',
+          },
+          {
+            test: /\.svg$/,
+            loader: 'svg-inline-loader',
+          },
+        ],
       },
     ],
   },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-  },
+  plugins: [htmlWebpackPlugin],
 };
-module.exports = config;
