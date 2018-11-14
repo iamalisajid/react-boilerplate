@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 
 class HelloMessage extends React.Component {
   render() {
-    return <div>Hello {this.props.name}</div>;
+    return <div>Hello { this.props.name }</div>;
   }
 }
 
 var mountNode = document.getElementById('root');
-ReactDOM.render(<HelloMessage name='Muthu'/>, mountNode);
+ReactDOM.render(<HelloMessage name='Ali'/>, mountNode);
