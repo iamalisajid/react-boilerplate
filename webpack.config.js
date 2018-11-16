@@ -5,10 +5,9 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   target: 'web',
   output: {
-    path: `${__dirname}/dist`,
     publicPath: '/',
     filename: '[name].js',
   },
@@ -22,6 +21,7 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true,
+    historyApiFallback: true,
   },
   module: {
     rules: [
