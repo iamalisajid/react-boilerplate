@@ -10,6 +10,7 @@ Install the dependencies and devDependencies and start the server.
 
 ```sh
 $ cd react-boilerplate
+$ json-server db.json
 $ npm install
 $ npm start
 ```
