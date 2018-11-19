@@ -19,7 +19,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: './dist',
+    contentBase: './public',
     hot: true,
     historyApiFallback: true,
   },
